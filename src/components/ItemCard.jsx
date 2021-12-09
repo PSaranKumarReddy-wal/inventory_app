@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   Button,
   Card,
@@ -11,6 +11,8 @@ import {
   Input,
   Label,
 } from "reactstrap";
+import UserContext from "./context";
+import EditForm from "./editForm";
 
 const ItemCard = ({ item, deletItem, data, setData }) => {
   const { title, description, quantity, id } = item;
@@ -43,12 +45,21 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
 
   const inputValue = (e) => {
     const { name, value } = e.target;
-
     setInput((prev) => ({ ...prev, [name]: value }));
   };
+
   return (
     <Col sm="4" xs="12" lg="3">
-      <Card>
+      <Card className="mb-3 text-center">
+        {/* <div>
+          <UserContext.Provider
+            value={{
+              users: [item, deletItem, data, setData, setUpdate, update],
+            }}
+          >
+            <EditForm />
+          </UserContext.Provider>
+        </div> */}
         {update ? (
           <Form
             onSubmit={(e) => {
@@ -104,6 +115,7 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
                 onClick={() => {
                   deletItem(id);
                 }}
+                className="mr-5"
               >
                 Delete
               </Button>
@@ -111,6 +123,7 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
                 onClick={() => {
                   setUpdate(!update);
                 }}
+                className="ml-5"
               >
                 {res}
               </Button>

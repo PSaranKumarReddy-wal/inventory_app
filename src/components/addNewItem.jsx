@@ -18,7 +18,7 @@ const AddingNewItem = ({ newItem, data, setData, id, setId }) => {
 
   const formChecking = (e) => {
     e.preventDefault();
-    const result = { id: id + 1, ...input };
+    const result = { id: id, ...input };
     console.log("inputvalues:::", result);
     setData([...data, result]);
     setId(id + 1);

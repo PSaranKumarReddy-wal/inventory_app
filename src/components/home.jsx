@@ -14,7 +14,7 @@ const Home = () => {
     { id: 2, title: "Hp Laptop", quantity: "18", description: "Hp brand" },
     { id: 3, title: "one plus", quantity: "40", description: "onePlus" },
   ];
-  const [id, setId] = useState(3);
+  const [id, setId] = useState(4);
   const [data, setData] = useState(inventData);
 
   const [addItem, setAddItem] = useState(false);
@@ -22,9 +22,17 @@ const Home = () => {
     setAddItem(!addItem);
   };
   const deletItem = (id) => {
-    const filterData = data.filter((item) => item.id !== id);
+    let i = 1;
+    const filterData = data
+      .filter((item) => item.id !== id)
+      .map((item) => {
+        item.id = i++;
+        return item;
+      });
     console.log("filter data", filterData);
     setData(filterData);
+    console.log("id value:", i);
+    setId(i);
   };
 
   console.log("home data:", data);
