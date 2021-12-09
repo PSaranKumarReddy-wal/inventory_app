@@ -5,9 +5,14 @@ import ItemCard from "./ItemCard";
 
 const Home = () => {
   const inventData = [
-    { id: 1, title: "Mac Book Pro", quantity: 10, description: "Apple brand" },
-    { id: 2, title: "Hp Laptop", quantity: 18, description: "Hp brand" },
-    { id: 3, title: "one plus", quantity: 40, description: "onePlus" },
+    {
+      id: 1,
+      title: "Mac Book Pro",
+      quantity: "10",
+      description: "Apple brand",
+    },
+    { id: 2, title: "Hp Laptop", quantity: "18", description: "Hp brand" },
+    { id: 3, title: "one plus", quantity: "40", description: "onePlus" },
   ];
   const [id, setId] = useState(3);
   const [data, setData] = useState(inventData);
@@ -41,7 +46,13 @@ const Home = () => {
         <Row>
           {data.length ? (
             data.map((item) => (
-              <ItemCard key={item.id} item={item} deletItem={deletItem} />
+              <ItemCard
+                key={item.id}
+                item={item}
+                deletItem={deletItem}
+                data={data}
+                setData={setData}
+              />
             ))
           ) : (
             <h1>No items</h1>
