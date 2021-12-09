@@ -13,7 +13,7 @@ import {
   Label,
 } from "reactstrap";
 
-const ItemCard = ({ item, deletItem, data, setData }) => {
+const ItemCard = ({ item, deleteItem, data, setData }) => {
   const { title, description, quantity, id } = item;
   const [input, setInput] = useState({
     title: title,
@@ -53,7 +53,7 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
         {/* <div>
           <UserContext.Provider
             value={{
-              users: [item, deletItem, data, setData, setUpdate, update],
+              users: [item, deleteItem, data, setData, setUpdate, update],
             }}
           >
             <EditForm />
@@ -74,6 +74,7 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
                 type="text"
                 onChange={inputValue}
                 value={input.title}
+                required
               />
             </FormGroup>
             <FormGroup>
@@ -85,6 +86,7 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
                 type="text"
                 onChange={inputValue}
                 value={input.description}
+                required
               />
             </FormGroup>
             <FormGroup>
@@ -96,6 +98,7 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
                 type="number"
                 onChange={inputValue}
                 value={input.quantity}
+                required
               />
             </FormGroup>
             <Button className="btn btn-success" type="submit">
@@ -104,7 +107,7 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
           </Form>
         ) : (
           <>
-            <CardTitle tag="h5">{title}</CardTitle>
+            <CardTitle tag="h4">{title}</CardTitle>
             <CardText>
               <b>Brand:</b>{" "}
               <Badge color="success" pill>
@@ -126,7 +129,7 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
               <div>
                 <Button
                   onClick={() => {
-                    deletItem(id);
+                    deleteItem(id);
                   }}
                   className="mr-5"
                   color="danger"

@@ -23,6 +23,7 @@ const AddingNewItem = ({ newItem, data, setData, id, setId }) => {
     setData([...data, result]);
     setId(id + 1);
     console.log("added data::", data);
+    newItem();
   };
 
   const inputValue = (e) => {

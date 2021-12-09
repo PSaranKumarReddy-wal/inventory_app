@@ -9,9 +9,9 @@ const Home = () => {
       id: 1,
       title: "Mac Book Pro",
       quantity: "10",
-      description: "Apple brand",
+      description: "Apple",
     },
-    { id: 2, title: "Hp Laptop", quantity: "18", description: "Hp brand" },
+    { id: 2, title: "Hp Laptop", quantity: "18", description: "Hp" },
     { id: 3, title: "one plus", quantity: "40", description: "onePlus" },
   ];
   const [id, setId] = useState(4);
@@ -21,17 +21,10 @@ const Home = () => {
   const newItem = () => {
     setAddItem(!addItem);
   };
-  const deletItem = (id) => {
-    let i = 1;
+  const deleteItem = (id) => {
     const filterData = data.filter((item) => item.id !== id);
-    //   .map((item) => {
-    //     item.id = i++;
-    //     return item;
-    //   });
-    // console.log("filter data", filterData);
+
     setData(filterData);
-    console.log("id value:", i);
-    setId(i);
   };
 
   console.log("home data:", data);
@@ -47,7 +40,7 @@ const Home = () => {
         />
       )}
       <Container>
-        <button className="btn btn-info mb-5" onClick={newItem}>
+        <button className="btn btn-info m-3" onClick={newItem}>
           Add Item
         </button>
         <Row>
@@ -56,7 +49,7 @@ const Home = () => {
               <ItemCard
                 key={item.id}
                 item={item}
-                deletItem={deletItem}
+                deleteItem={deleteItem}
                 data={data}
                 setData={setData}
               />
