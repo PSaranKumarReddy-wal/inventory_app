@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./components/home";
+import imm from "./chakri-photo.jpeg";
 
 function App() {
   return (

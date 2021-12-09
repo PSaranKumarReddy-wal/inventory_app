@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import {
+  Badge,
   Button,
   Card,
   CardFooter,
@@ -11,8 +12,6 @@ import {
   Input,
   Label,
 } from "reactstrap";
-import UserContext from "./context";
-import EditForm from "./editForm";
 
 const ItemCard = ({ item, deletItem, data, setData }) => {
   const { title, description, quantity, id } = item;
@@ -50,7 +49,7 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
 
   return (
     <Col sm="4" xs="12" lg="3">
-      <Card className="mb-3 text-center">
+      <Card className="mb-3 p-3">
         {/* <div>
           <UserContext.Provider
             value={{
@@ -106,27 +105,46 @@ const ItemCard = ({ item, deletItem, data, setData }) => {
         ) : (
           <>
             <CardTitle tag="h5">{title}</CardTitle>
-            <CardText>Description:{description}</CardText>
             <CardText>
-              Quantity:{quantity} id:{id}
+              <b>Brand:</b>{" "}
+              <Badge color="success" pill>
+                {description}
+              </Badge>
+            </CardText>
+            <CardText>
+              <b>Quantity: </b>
+              <Badge color="info" pill>
+                {quantity}
+              </Badge>
+              <br />
+              <b>id: </b>
+              <Badge color="info" pill>
+                {id}
+              </Badge>
             </CardText>
             <CardFooter>
-              <Button
-                onClick={() => {
-                  deletItem(id);
-                }}
-                className="mr-5"
-              >
-                Delete
-              </Button>
-              <Button
-                onClick={() => {
-                  setUpdate(!update);
-                }}
-                className="ml-5"
-              >
-                {res}
-              </Button>
+              <div>
+                <Button
+                  onClick={() => {
+                    deletItem(id);
+                  }}
+                  className="mr-5"
+                  color="danger"
+                  outline
+                >
+                  Delete
+                </Button>
+                <Button
+                  onClick={() => {
+                    setUpdate(!update);
+                  }}
+                  className="buttonn"
+                  color="info"
+                  outline
+                >
+                  {res}
+                </Button>
+              </div>
             </CardFooter>
           </>
         )}

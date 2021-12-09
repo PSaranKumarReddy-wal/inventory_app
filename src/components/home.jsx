@@ -23,13 +23,12 @@ const Home = () => {
   };
   const deletItem = (id) => {
     let i = 1;
-    const filterData = data
-      .filter((item) => item.id !== id)
-      .map((item) => {
-        item.id = i++;
-        return item;
-      });
-    console.log("filter data", filterData);
+    const filterData = data.filter((item) => item.id !== id);
+    //   .map((item) => {
+    //     item.id = i++;
+    //     return item;
+    //   });
+    // console.log("filter data", filterData);
     setData(filterData);
     console.log("id value:", i);
     setId(i);
