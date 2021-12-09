@@ -2,7 +2,7 @@ import { Button, Card, CardFooter, CardText, CardTitle, Col } from "reactstrap";
 
 const ItemCard = ({ item, deletItem }) => {
   const { title, description, quantity, id } = item;
-  const [editing]
+
   return (
     <Col sm="4" xs="12" lg="3">
       <Card>
