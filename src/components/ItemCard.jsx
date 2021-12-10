@@ -1,129 +1,59 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   Badge,
   Button,
   Card,
   CardFooter,
+  CardImg,
   CardText,
   CardTitle,
   Col,
-  Form,
-  FormGroup,
-  Input,
-  Label,
 } from "reactstrap";
+import EditForm from "./editForm";
 
 const ItemCard = ({ item, deleteItem, data, setData }) => {
-  const { title, description, quantity, id } = item;
-  const [input, setInput] = useState({
-    title: title,
-    description: description,
-    quantity: quantity,
-  });
+  const { title, description, quantity, id, imageUrl, price } = item;
+
   const [update, setUpdate] = useState(false);
-  const res = update ? "update" : "Edit";
-
-  const formChecking = (e) => {
-    e.preventDefault();
-    const result = { ...input };
-    const editedResults = data.map((item) => {
-      if (item.id === id) {
-        item.title = result.title;
-        item.description = result.description;
-        item.quantity = result.quantity;
-        return item;
-      } else {
-        return item;
-      }
-    });
-
-    console.log("edited results::", editedResults);
-    setData(editedResults);
-    setUpdate(!update);
-  };
-
-  const inputValue = (e) => {
-    const { name, value } = e.target;
-    setInput((prev) => ({ ...prev, [name]: value }));
-  };
 
   return (
     <Col sm="4" xs="12" lg="3">
       <Card className="mb-3 p-3">
-        {/* <div>
-          <UserContext.Provider
-            value={{
-              users: [item, deleteItem, data, setData, setUpdate, update],
-            }}
-          >
-            <EditForm />
-          </UserContext.Provider>
-        </div> */}
         {update ? (
-          <Form
-            onSubmit={(e) => {
-              formChecking(e);
-            }}
-          >
-            <FormGroup>
-              <Label for="exampleTitile">Titile</Label>
-              <Input
-                id="exampleTitile"
-                name="title"
-                placeholder="Enter Title"
-                type="text"
-                onChange={inputValue}
-                value={input.title}
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleURL">Description</Label>
-              <Input
-                id="exampleURL"
-                name="description"
-                placeholder="Enter Description"
-                type="text"
-                onChange={inputValue}
-                value={input.description}
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="exampleURL">Quantity</Label>
-              <Input
-                id="exampleURL"
-                name="quantity"
-                placeholder="Enter Description"
-                type="number"
-                onChange={inputValue}
-                value={input.quantity}
-                required
-              />
-            </FormGroup>
-            <Button className="btn btn-success" type="submit">
-              Save
-            </Button>
-          </Form>
+          <EditForm
+            item={item}
+            setData={setData}
+            data={data}
+            update={update}
+            setUpdate={setUpdate}
+          />
         ) : (
           <>
-            <CardTitle tag="h4">{title}</CardTitle>
+            <div className="imgContainer">
+              <CardImg
+                alt={imageUrl ? "Wrong Image Link " : "not found"}
+                src={
+                  imageUrl
+                    ? imageUrl
+                    : "https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png"
+                }
+                top
+                className="imageSize"
+              />
+            </div>
+            <CardTitle tag="h5" style={{ fontWeight: 700, marginTop: "5px" }}>
+              {title.toUpperCase()}
+            </CardTitle>
             <CardText>
-              <b>Brand:</b>{" "}
-              <Badge color="success" pill>
-                {description}
-              </Badge>
-            </CardText>
-            <CardText>
+              <b>Brand:</b> <Badge color="success">{description}</Badge>
+              <br />
               <b>Quantity: </b>
               <Badge color="info" pill>
-                {quantity}
+                {quantity > 0 ? quantity : "Out of Stock"}
               </Badge>
               <br />
-              <b>id: </b>
-              <Badge color="info" pill>
-                {id}
-              </Badge>
+              <b>Price: </b>
+              <Badge color="danger">₹{price}</Badge>
             </CardText>
             <CardFooter>
               <div>
@@ -145,7 +75,7 @@ const ItemCard = ({ item, deleteItem, data, setData }) => {
                   color="info"
                   outline
                 >
-                  {res}
+                  Edit
                 </Button>
               </div>
             </CardFooter>

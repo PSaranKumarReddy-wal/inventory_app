@@ -1,29 +1,16 @@
-import { useContext, useState } from "react";
-import UserContext from "./context";
+import { useState } from "react";
+
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
-const EditForm = () => {
-  const { users } = useContext(UserContext);
-  const [data, item, setData, setUpdate, update] = users;
-  console.log("data", data);
-  console.log("item::", item);
-  console.log("update:", update);
-  const { title, description, quantity, id } = item;
-  const [input, setInput] = useState({
-    title: title,
-    description: description,
-    quantity: quantity,
-  });
+const EditForm = ({ item, data, setData, update, setUpdate }) => {
+  const [input, setInput] = useState(item);
 
   const formChecking = (e) => {
     e.preventDefault();
-    const result = { ...input };
+    console.log("input values::", input);
     const editedResults = data.map((item) => {
-      if (item.id === id) {
-        item.title = result.title;
-        item.description = result.description;
-        item.quantity = result.quantity;
-        return item;
+      if (item.id === input.id) {
+        return input;
       } else {
         return item;
       }
@@ -54,32 +41,76 @@ const EditForm = () => {
             type="text"
             onChange={inputValue}
             value={input.title}
+            required
           />
         </FormGroup>
         <FormGroup>
-          <Label for="exampleURL">Description</Label>
+          <Label for="exampleURL">Brand Name</Label>
           <Input
             id="exampleURL"
             name="description"
-            placeholder="Enter Description"
+            placeholder="Enter Brand Name"
             type="text"
             onChange={inputValue}
             value={input.description}
+            required
           />
         </FormGroup>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+          }}
+        >
+          <FormGroup>
+            <Label for="exampleEmail">Quantity</Label>
+            <Input
+              id="exampleEmail"
+              name="quantity"
+              placeholder="Enter Quantity"
+              type="number"
+              onChange={inputValue}
+              value={input.quantity}
+            />
+          </FormGroup>
+
+          <FormGroup style={{ marginLeft: "10px" }}>
+            <Label for="exampleEmail">Price</Label>
+            <Input
+              id="exampleEmail"
+              name="price"
+              placeholder="Enter price"
+              type="text"
+              onChange={inputValue}
+              value={input.price}
+              required
+            />
+          </FormGroup>
+        </div>
+
         <FormGroup>
-          <Label for="exampleURL">Quantity</Label>
+          <Label for="exampleURL">Image Url</Label>
           <Input
             id="exampleURL"
-            name="quantity"
-            placeholder="Enter Description"
-            type="number"
+            name="imageUrl"
+            placeholder="Enter Url"
+            type="url"
             onChange={inputValue}
-            value={input.quantity}
+            value={input.imageUrl}
           />
         </FormGroup>
-        <Button className="btn btn-success" type="submit">
+        <Button outline color="success" type="submit">
           Save
+        </Button>
+        <Button
+          outline
+          color="danger"
+          className="buttonn"
+          onClick={() => {
+            setUpdate(!update);
+          }}
+        >
+          Cancel
         </Button>
       </Form>
     </>

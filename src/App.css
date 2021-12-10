@@ -40,3 +40,24 @@
 .buttonn {
     margin-left: 10px;
 }
+
+.imageSize {
+    width: 80%;
+    height: 200px;
+}
+
+.imgContainer {
+    text-align: center;
+}
+
+.navbaar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headTitle {
+    font-family: 700;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    text-shadow: 1px 1px 2px black;
+}

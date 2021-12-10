@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {
+  Badge,
   Button,
   Form,
   FormGroup,
@@ -19,10 +20,10 @@ const AddingNewItem = ({ newItem, data, setData, id, setId }) => {
   const formChecking = (e) => {
     e.preventDefault();
     const result = { id: id, ...input };
-    console.log("inputvalues:::", result);
+
     setData([...data, result]);
     setId(id + 1);
-    console.log("added data::", data);
+
     newItem();
   };
 
@@ -59,25 +60,57 @@ const AddingNewItem = ({ newItem, data, setData, id, setId }) => {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="exampleURL">Description</Label>
+                <Label for="exampleURL">Brand Name</Label>
                 <Input
                   id="exampleURL"
                   name="description"
-                  placeholder="Enter Description"
+                  placeholder="Enter Brand"
                   type="text"
                   onChange={inputValue}
                 />
               </FormGroup>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                }}
+              >
+                <FormGroup>
+                  <Label for="exampleEmail">Quantity</Label>
+                  <Input
+                    id="exampleEmail"
+                    name="quantity"
+                    placeholder="Enter Quantity"
+                    type="number"
+                    onChange={inputValue}
+                  />
+                </FormGroup>
+
+                <FormGroup style={{ marginLeft: "10px" }}>
+                  <Label for="exampleEmail">Price</Label>
+                  <Input
+                    id="exampleEmail"
+                    name="price"
+                    placeholder="Enter price"
+                    type="text"
+                    onChange={inputValue}
+                    required
+                  />
+                </FormGroup>
+              </div>
               <FormGroup>
-                <Label for="exampleEmail">Quantity</Label>
+                <Label for="exampleEmail">
+                  Image Url <Badge color="danger">Optional</Badge>
+                </Label>
                 <Input
                   id="exampleEmail"
-                  name="quantity"
-                  placeholder="Enter Quantity"
-                  type="number"
+                  name="imageUrl"
+                  placeholder="Enter ImageUrl"
+                  type="url"
                   onChange={inputValue}
                 />
               </FormGroup>
+
               <Button
                 className="btn btn-success"
                 type="submit"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Row } from "reactstrap";
+import { Container, FormGroup, Input, Row } from "reactstrap";
 import AddingNewItem from "./addNewItem";
 import ItemCard from "./ItemCard";
 
@@ -10,14 +10,35 @@ const Home = () => {
       title: "Mac Book Pro",
       quantity: "10",
       description: "Apple",
+      price: "1,20,000",
+      imageUrl:
+        "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-gold-select-201810?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1633027804000",
     },
-    { id: 2, title: "Hp Laptop", quantity: "18", description: "Hp" },
-    { id: 3, title: "one plus", quantity: "40", description: "onePlus" },
+    {
+      id: 2,
+      title: "Hp Laptop",
+      quantity: "18",
+      description: "Hp",
+      price: "53,000",
+      imageUrl:
+        "https://5.imimg.com/data5/HI/LO/MY-24587489/hp-laptop-500x500.jpg",
+    },
+    {
+      id: 3,
+      title: "one plus",
+      quantity: "40",
+      description: "onePlus",
+      price: "25,000",
+      imageUrl:
+        "https://www.gizmochina.com/wp-content/uploads/2020/03/OnePlus-8-1.jpg",
+    },
   ];
   const [id, setId] = useState(4);
   const [data, setData] = useState(inventData);
 
   const [addItem, setAddItem] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+
   const newItem = () => {
     setAddItem(!addItem);
   };
@@ -26,8 +47,10 @@ const Home = () => {
 
     setData(filterData);
   };
+  const searchInput = (e) => {
+    setSearchValue(e.target.value);
+  };
 
-  console.log("home data:", data);
   return (
     <div>
       {addItem && (
@@ -39,21 +62,41 @@ const Home = () => {
           setId={setId}
         />
       )}
+      <h1 className="text-center headTitle text-info">Inventory Application</h1>
       <Container>
-        <button className="btn btn-info m-3" onClick={newItem}>
-          Add Item
-        </button>
+        <div className="navbaar">
+          <button className="btn btn-info" onClick={newItem}>
+            Add Item
+          </button>
+
+          <FormGroup
+            style={{ marginLeft: "10px", width: "250px", marginTop: "15px" }}
+          >
+            <Input
+              id="exampleEmail"
+              name="price"
+              placeholder="Search Items"
+              type="text"
+              onChange={searchInput}
+            />
+          </FormGroup>
+        </div>
+
         <Row>
           {data.length ? (
-            data.map((item) => (
-              <ItemCard
-                key={item.id}
-                item={item}
-                deleteItem={deleteItem}
-                data={data}
-                setData={setData}
-              />
-            ))
+            data
+              .filter((item) =>
+                item.title.toLowerCase().includes(searchValue.toLowerCase())
+              )
+              .map((item) => (
+                <ItemCard
+                  key={item.id}
+                  item={item}
+                  deleteItem={deleteItem}
+                  data={data}
+                  setData={setData}
+                />
+              ))
           ) : (
             <h1>No items</h1>
           )}
