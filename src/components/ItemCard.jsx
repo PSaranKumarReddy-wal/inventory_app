@@ -41,7 +41,7 @@ const ItemCard = ({ item, deleteItem, data, setData }) => {
                 className="imageSize"
               />
             </div>
-            <CardTitle tag="h5" style={{ fontWeight: 700, marginTop: "5px" }}>
+            <CardTitle tag="h5" style={{ fontWeight: 700 }}>
               {title.toUpperCase()}
             </CardTitle>
             <CardText>
@@ -53,7 +53,7 @@ const ItemCard = ({ item, deleteItem, data, setData }) => {
               </Badge>
               <br />
               <b>Price: </b>
-              <Badge color="danger">₹{price}</Badge>
+              <Badge color="info">₹{price}</Badge>
             </CardText>
             <CardFooter>
               <div>

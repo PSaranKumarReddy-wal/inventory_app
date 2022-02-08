@@ -3,11 +3,14 @@ import { useState } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 
 const EditForm = ({ item, data, setData, update, setUpdate }) => {
+  console.log("data", data);
+  console.log("item::", item);
+  console.log("update:", update);
+
   const [input, setInput] = useState(item);
 
   const formChecking = (e) => {
     e.preventDefault();
-    console.log("input values::", input);
     const editedResults = data.map((item) => {
       if (item.id === input.id) {
         return input;
@@ -93,8 +96,8 @@ const EditForm = ({ item, data, setData, update, setUpdate }) => {
           <Input
             id="exampleURL"
             name="imageUrl"
-            placeholder="Enter Url"
-            type="url"
+            placeholder="Enter Description"
+            type="text"
             onChange={inputValue}
             value={input.imageUrl}
           />

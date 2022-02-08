@@ -35,18 +35,19 @@ const Home = () => {
   ];
   const [id, setId] = useState(4);
   const [data, setData] = useState(inventData);
-
   const [addItem, setAddItem] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   const newItem = () => {
     setAddItem(!addItem);
   };
+
   const deleteItem = (id) => {
     const filterData = data.filter((item) => item.id !== id);
 
     setData(filterData);
   };
+
   const searchInput = (e) => {
     setSearchValue(e.target.value);
   };
