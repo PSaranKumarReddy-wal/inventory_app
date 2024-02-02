@@ -14,6 +14,8 @@ import {
 const AddingNewItem = ({ newItem, data, setData, id, setId }) => {
   const [input, setInput] = useState({});
 
+  var userInput = "'; DROP TABLE users; --";
+  var query = "SELECT * FROM users WHERE username = '" + userInput + "';";
   const checking =
     input["title"] && input["description"] && input["quantity"] ? false : true;
 

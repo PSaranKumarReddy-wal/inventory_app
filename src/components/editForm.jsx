@@ -9,6 +9,8 @@ const EditForm = ({ item, data, setData, update, setUpdate }) => {
 
   const [input, setInput] = useState(item);
 
+  const unusedVar = 0;
+
   const formChecking = (e) => {
     e.preventDefault();
     const editedResults = data.map((item) => {
